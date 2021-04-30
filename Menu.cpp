@@ -7,6 +7,9 @@ void Menu::gotoxy(int x, int y)
     c.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
+
+#pragma region  Desenhos/Classes_Show
+
 void Menu::clearScreen(int characterLength)
 {
     for (int i = 0; i < characterLength; i++)
@@ -21,7 +24,7 @@ void Menu::changeColour(int colour)
     SetConsoleTextAttribute(hConsole, colour);
 }
 
-void Menu::showBlinkColoour()
+void Menu::showBlinkColoour() //testes
 {
     string closed = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", open = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
     int colour[] = { BLUE, WHITE, BLUE };
@@ -79,7 +82,7 @@ void Menu::Boat_1()
     gotoxy(20, 40); cout << "  " << char(92) << "              < < <       |    " << endl;
     gotoxy(20, 41); cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;;
 }
-void Menu::Boat_2()
+void Menu::Boat_2() // desenha o barco
 {
     gotoxy(73, 24); cout << "                                     |__" << endl;
     gotoxy(73, 25); cout << "                                     |" << char(92) << "/" << endl;
@@ -96,7 +99,7 @@ void Menu::Boat_2()
     gotoxy(73, 36); cout << " " << char(92) << "_______________________________________________________________________|" << endl;
 
 }
-void Menu::C_ascii() //Desenha NAVAL BATTLE no ecrã experiencia
+void Menu::C_ascii() //Desenha NAVAL BATTLE no ecrÃ£ experiencia
 {
     gotoxy(25, 7);  cout << "                                                                  ,--,      \n";
     gotoxy(25, 8);  cout << "         ,--.                                                  ,---.'|      \n";
@@ -149,7 +152,7 @@ void Menu::C_ascii_2() // desenha battleship no ecra
     gotoxy(50, 21);  cout << "`----'                                                                    `----'                    '---'                     `---`      \n";
 }
 
-void Menu::intro()
+void Menu::intro() // desenha a intro
 {
     gotoxy(80, 7);   cout << "                         .sssssssss.";
     gotoxy(80, 8);   cout << "                   .sssssssssssssssssss";
@@ -175,15 +178,15 @@ void Menu::intro()
    // gotoxy(80, 30);   cout << "            __   __  __ ___  __   __   __  __  __";
    // gotoxy(80, 31);   cout << "           |__) |_  (_   |  |_   |__) |_  |_  |__)";
    // gotoxy(80, 32);   cout << "           |__) |__ __)  |  |__  |__) |__ |__ | " << char(92) << "";
-    gotoxy(80, 40);   cout << "            MADE BY JOSE MAGALHAES & LEOANARDO BOTELHO";
+    gotoxy(80, 40);   cout << "        MADE BY JOSE MAGALHAES & LEOANARDO BOTELHO";
 
     gotoxy(81, 30);   cout << "   ___  __ .  .  _   __  __        _    __ ___  __   __   ";
     gotoxy(81, 31);   cout << "    |  |_  |" << char(92) << " | | " << char(92) << " |_  (_        /_" << char(92) << "  |_   |  |_   |__) ";
     gotoxy(81, 32);   cout << "    |  |__ | " << char(92) << "| |_/ |__ __)      /   " << char(92) << " |    |  |__  | " << char(92) ;
     
-    gotoxy(83, 34);   cout << "                __ ___       _     __";
-    gotoxy(83, 35);   cout << "               (_   |  |  | | " << char(92) << " | |  |";
-    gotoxy(83, 36);   cout << "               __)  |  |__| |_/ | |__|";
+    gotoxy(83, 34);   cout << "                __ ___      _     _";
+    gotoxy(83, 35);   cout << "               (_   |  | | | " << char(92) << " | | |";
+    gotoxy(83, 36);   cout << "               __)  |  |_| |_/ | |_|";
 }
 void Menu::Mostar_Intro()
 {
@@ -204,15 +207,65 @@ void Menu::Mostar_Intro()
 }
 void Menu::loading_s()
 {
-   gotoxy(80, 30);   cout << "           __    _    _  . .  .  __   ";
-   gotoxy(80, 31);   cout << "     |    |  |  /_" << char(92) << "  | " << char(92) << " | |" << char(92) << " | | __  ";
-   gotoxy(80, 32);   cout << "     |__  |__| /   " << char(92) << " |_/ | | " << char(92) << "| |__|  ";
-   
-   for (int i = 0; i < 5; i + 2) {
-   gotoxy(80, 32);   cout << "";
-   }
+        gotoxy(71, 21);   cout << "   ,--,                                                                                            ";
+        gotoxy(71, 22);   cout << ",---.'|         ,----..                                                        ,--.                ";
+        gotoxy(71, 23);   cout << "|   | :        /   /   " << char(92) << "       ,---,             ,---,         ,---,         ,--.'|    ,----..     ";
+        gotoxy(71, 24);   cout << ":   : |       /   .     :     '  .' " << char(92) << "          .'  .' `" << char(92) << "    ,`--.' |     ,--,:  : |   /   /   " << char(92) << "    ";
+        gotoxy(71, 25);   cout << "|   ' :      .   /   ;.  " << char(92) << "   /  ;    '.      ,---.'     " << char(92) << "   |   :  :  ,`--.'`|  ' :  |   :     :   ";
+        gotoxy(71, 26);   cout << ";   ; '     .   ;   /  ` ;  :  :       " << char(92) << "     |   |  .`" << char(92) << "  |  :   |  '  |   :  :  | |  .   |  ;. /   ";
+        gotoxy(71, 26);   cout << "'   | |__   ;   |  ; " << char(92) << " ; |  :  |   /" << char(92) << "   " << char(92) << "    :   : |  '  |  |   :  |  :   |   " << char(92) << " | :  .   ; /--`    ";
+        gotoxy(71, 27);   cout << "|   | :.'|  |   :  | ; | '  |  :  ' ;.   :   |   ' '  ;  :  '   '  ;  |   : '  '; |  ;   | ;  __   ";
+        gotoxy(71, 28);   cout << "'   :    ;  .   |  ' ' ' :  |  |  ;/  " << char(92) << "   " << char(92) << "  '   | ;  .  |  |   |  |  '   ' ;.    ;  |   : |.' .'  ";
+        gotoxy(71, 29);   cout << "|   |  ./   '   ;  " << char(92) << "; /  |  '  :  | " << char(92) << "  " << char(92) << " ,'  |   | :  |  '  '   :  ;  |   | | " << char(92) << "   |  .   | '_.' :  ";
+        gotoxy(71, 30);   cout << ";   : ;      " << char(92) << "   " << char(92) << "  ',  /   |  |  '  '--'    '   : | /  ;   |   |  '  '   : |  ; .'  '   ; : " << char(92) << "  |  ";
+        gotoxy(71, 31);   cout << "|   ,/        ;   :    /    |  :  :          |   | '` ,/    '   :  |  |   | '`--'    '   | '/  .'  ";
+        gotoxy(71, 32);   cout << "'---'          " << char(92) << "   " << char(92) << " .'     |  | ,'          ;   :  .'      ;   |.'   '   : |        |   :    /    ";
+        gotoxy(71, 33);   cout << "                `---`       `--''            |   ,.'        '---'     ;   |.'         " << char(92) << "   " << char(92) << " .'     ";
+        gotoxy(71, 34);   cout << "                                             '---'                    '---'            `---`       ";
 
 }
+
+void Menu::Show_loading_s()
+{
+    bool running = true;
+    int num = 1;
+    int i = 0;
+
+    do {
+
+        loading_s();
+
+        gotoxy(68, 35); cout << char(218);  //canto superior esquerdo
+        gotoxy(68, 37); cout << char(192);  //canto inferior esquerdo
+        gotoxy(170, 35); cout << char(191); //canto superior direito
+        gotoxy(170, 37); cout << char(217); //canto inferior direito
+
+        for (int i = 1; i <= 101; i++)
+        {
+            gotoxy(68 + i, 35); cout << char(196); //linha de cima
+            gotoxy(68 + i, 37); cout << char(196); // linha de baixo
+        }
+
+        for (int j = 1; j <= 1; j++)
+        {
+            gotoxy(68, 35 + j); cout << char(179); //linha da esquerda
+            gotoxy(170, 35 + j); cout << char(179); //linha da direita
+        }
+        for (i = 0; i < 99; i++)
+        {
+            gotoxy(70 + i, 36); cout << char(254);
+            Sleep(50);
+        }
+
+        num--;
+        if (num == 0)
+            running = false;
+
+    } while (running != false);
+
+    gotoxy(180, 49);
+}
+#pragma endregion
 
 void Menu::M_Menu(void)
 {
@@ -293,6 +346,9 @@ void Menu::M_Menu(void)
                 case 2: 
                 {
                 gotoxy(102, 56); // introduzir a demo
+                running = false;
+                system("cls");
+                Show_loading_s();
                 battleShip.Demo();
                 break;
                 }
@@ -323,6 +379,6 @@ void Menu::M_Menu(void)
 
     }
 
-   // gotoxy(100, 62);
+    gotoxy(100, 62);
         
 }
