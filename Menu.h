@@ -30,6 +30,8 @@ class Menu
 		void intro();
 		void Mostar_Intro();
 		void loading_s();
+		void New_Game_s();
+		void Show_New_Game_s();
 };
 
 
