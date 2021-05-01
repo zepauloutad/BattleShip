@@ -265,6 +265,63 @@ void Menu::Show_loading_s()
 
     gotoxy(180, 49);
 }
+
+void Menu::New_Game_s() //Desenha New Game no ecrã
+{
+    gotoxy(68, 21);   cout << "         ,--.                                                                                            ";
+    gotoxy(68, 22);   cout << "       ,--.'|                                   ,----..                              ____                ";
+    gotoxy(68, 23);   cout << "   ,--,:  : |                                  /   /   " << char(92) << "                           ,'  , `.              ";
+    gotoxy(68, 24);   cout << ",`--.'`|  ' :                       .---.     |   :     :                       ,-+-,.' _ |              ";
+    gotoxy(68, 25);   cout << "|   :  :  | |                      /. ./|     .   |  ;. /                    ,-+-. ;   , ||              ";
+    gotoxy(68, 26);   cout << ":   |   " << char(92) << " | :     ,---.         .-'-. ' |     .   ; /--`       ,--.--.      ,--.'|'   |  ||     ,---.    ";
+    gotoxy(68, 27);   cout << "|   : '  '; |    /     " << char(92) << "       /___/ " << char(92) << ": |     ;   | ;  __     /       " << char(92) << "    |   |  ,', |  |,    /     " << char(92) << "   ";
+    gotoxy(68, 28);   cout << "'   ' ;.    ;   /    /  |   .-'.. '   ' .     |   : |.' .'   .--.  .-. |   |   | /  | |--'    /    /  |  ";
+    gotoxy(68, 29);   cout << "|   | | " << char(92) << "   |  .    ' / |  /___/ " << char(92) << ":     '     .   | '_.' :    " << char(92) << "__" << char(92) << "/: . .   |   : |  | ,      .    ' / |  ";
+    gotoxy(68, 30);   cout << "'   : |  ; .'  '   ;   /|  .   " << char(92) << "  ' ." << char(92) << "        '   ; : " << char(92) << "  |    ," << char(32) << " .--.; |   |   : |  |/       '   ;   /|  ";
+    gotoxy(68, 31);   cout << "|   | '`--'    '   |  / |   " << char(92) << "   " << char(92) << "   ' " << char(92) << " |     '   | '/  .'   /  /  ,.  |   |   | |`-'        '   |  / |  ";
+    gotoxy(68, 32);   cout << "'   : |        |   :    |    " << char(92) << "   " << char(92) << "  |--" << char(32) << "      |   :    /    ;  :    .'  " << char(92) << "  |   ;/            |   :    |  ";
+    gotoxy(68, 33);   cout << ";   |.'         " << char(92) << "   " << char(92) << "  /      " << char(92) << "   " << char(92) << " |          " << char(92) << "   " << char(92) << " .'     |  ,     .-./  '---'              " << char(92) << "   " << char(92) << "  /   ";
+    gotoxy(68, 34);   cout << "'---'            `----'        '---" << char(32) << "            `---`        `--`---'                          `----'    ";
+
+}
+
+void Menu::Show_New_Game_s() // Mostra "NEW GAME no ecrã
+{
+    int num = 1;
+    bool running = true;
+    do {
+
+        New_Game_s();
+
+        gotoxy(68, 35); cout << char(218);  //canto superior esquerdo
+        gotoxy(68, 37); cout << char(192);  //canto inferior esquerdo
+        gotoxy(170, 35); cout << char(191); //canto superior direito
+        gotoxy(170, 37); cout << char(217); //canto inferior direito
+
+        for (int i = 1; i <= 101; i++)
+        {
+            gotoxy(68 + i, 35); cout << char(196); //linha de cima
+            gotoxy(68 + i, 37); cout << char(196); // linha de baixo
+        }
+
+        for (int j = 1; j <= 1; j++)
+        {
+            gotoxy(68, 35 + j); cout << char(179); //linha da esquerda
+            gotoxy(170, 35 + j); cout << char(179); //linha da direita
+        }
+        for (int i = 0; i < 99; i++)
+        {
+            gotoxy(70 + i, 36); cout << char(254);
+            Sleep(50);
+        }
+
+        num--;
+        if (num == 0)
+            running = false;
+
+
+    } while (running != false);
+}
 #pragma endregion
 
 void Menu::M_Menu(void)
@@ -272,13 +329,10 @@ void Menu::M_Menu(void)
     int menu_item = 1, run, y = 46, num = 3;
     bool running = true;
     bool running_i = true;
-    Menu M;
-    Menu M1;
-    Menu M2;
     
-    M2.Mostar_Intro();
-    M.C_ascii_2();
-    M1.Boat_2();
+    Mostar_Intro();
+    C_ascii_2();
+    Boat_2();
     gotoxy(100, 45); cout << "Main Menu";
     gotoxy(100, 46); cout << "->";
    
@@ -339,6 +393,9 @@ void Menu::M_Menu(void)
                 {
                 gotoxy(102, 56);
                 cout << "U chose new game "; //return new game e colocar running = false
+                running = false;
+                system("cls");
+                Show_New_Game_s();
                 break;
                 }
 
