@@ -1,0 +1,4 @@
+Battleship.
+This game is still a demo under development within the scope of the subject LAB 2nd Semester 2020/2021.
+Made by Jose Rocha and Leonardo Botelho.
+Have fun! 
