@@ -1,4 +1,12 @@
 Battleship.
+
 This game is still a demo under development within the scope of the subject LAB 2nd Semester 2020/2021.
+
+
+You currently have 4 submarines that occupy only one space in the board each. 
+After placing the boats, each player has 3 shots.
+ When you hit you have two options "A" when you miss and "T" when you hit the target.
+
+
 Made by Jose Rocha and Leonardo Botelho.
 Have fun! 
