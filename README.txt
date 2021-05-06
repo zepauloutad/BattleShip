@@ -21,8 +21,11 @@ ULTIMA NOTA: AS ESTATISTICAS AINDA ESTÃO EM DESENVOLVIMENTO, APENAS A PARTE VIS
 FICA AQUI EXPLICADO ALGUNS DOS DETALHES PRINCIPAIS:
 QUALQUER DUVIDA FICA O NOSSO EMAIL.
 
+
 Leonardo Botelho al: 73940 
 leonardo.melo.botelho@hotmail.com 
 
 Jose Rocha al: 74392
 zepauloutad@gmail.com
+
+LINK DO REPOSITORIO DO GITHUB: https://github.com/zepauloutad/BattleShip
