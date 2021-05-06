@@ -12,7 +12,7 @@ int main()
     Menu* G;
     G = new Menu();
     G->M_Menu();
-    system("pause");
+    return 0;
     
 }
 

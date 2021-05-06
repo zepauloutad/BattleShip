@@ -5,10 +5,12 @@ using namespace std;
 
 Boat::Boat()
 {
+
 }
 
 Boat::~Boat()
 {
+
 }
 
 Navalpoint Boat::Boatcreate(int num)

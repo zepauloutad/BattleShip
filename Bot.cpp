@@ -2,17 +2,21 @@
 #include <iostream>
 #include <ctime>
 #include<windows.h>
+#include "Menu.h"
 using namespace std;
 Bot::Bot()
 {
+
 }
 
 Bot::~Bot()
 {
+	
 }
 
 void Bot::Place(Board* oponent)
 {
+	Player P;
 	int i = 0;
 	Navalpoint cel, celRight, celLeft, celTop, celTopRight, celTopLeft, celUnder, celUnderRight, celUnderLeft;
 
@@ -46,13 +50,14 @@ void Bot::Place(Board* oponent)
 		}
 		//---------------------------------------------------------------
 		GetBoard()->SetCell(MB[i].GetPosition());
-		Save("BotPositions.txt", getBoard() );
+		Save("BotPositions.txt", GetBoard() );
 	}
 	
 }
 
 void Bot::Shoot(Board* oponent)
 {
+	Player P;
 	int x = 0, y = 0, i = 0;
 
 	srand(time(0));
@@ -77,6 +82,8 @@ void Bot::Shoot(Board* oponent)
 			Sleep(500);
 			system("cls");
 			oponent->Draw2(40, 5, GetBoard());
+			Stats();
+			P.Stats();
 		}
 		if (shots[i].GetC() == '.')
 		{
@@ -88,6 +95,8 @@ void Bot::Shoot(Board* oponent)
 			Sleep(500);
 			system("cls");
 			oponent->Draw2(40, 5, GetBoard());
+			Stats();
+			P.Stats();
 		}
 		if (shots[i].GetC() == 'O')
 		{
@@ -99,9 +108,25 @@ void Bot::Shoot(Board* oponent)
 			Sleep(500);
 			system("cls");
 			oponent->Draw2(40, 5, GetBoard());
+			Stats();
+			P.Stats();
 			WinningCondition("allcordsbot.txt", oponent);
 		}
 	}
+}
+
+
+
+int Bot::CountShots(Board* oponent)
+{
+	int count = 0, size = 0, i = 0;
+	size++;
+	for (i = 0; i < size; i++)
+	{
+		if (GetShots()->GetC() == 'A' || GetShots()->GetC() == 'T');
+		count++;
+	}
+	return count;
 }
 
 void Bot::Save(string file, Board* oponent)
@@ -116,6 +141,20 @@ void Bot::Save(string file, Board* oponent)
 	}
 	oponent->Save(os);
 	os.close();
+}
+
+void Bot::Read(string file, Board* oponent)
+{
+	ifstream is;
+
+	is.open(file);
+	if (!is)
+	{
+		cerr << "ERROR: problem in opening the file " << file << '\n';
+		exit(0);
+	}
+	oponent->Read(is);
+	is.close();
 }
 
 void Bot::WinningCondition(string file, Board* oponent)
@@ -138,4 +177,49 @@ void Bot::WinningCondition(string file, Board* oponent)
 		exit(0);
 	}
 	is.close();
+
+	
+
+}
+
+int Bot::CountBoats()
+{
+	int count = 0, i = 0;
+	for (i = 0; i < 4; i++)
+	{
+		if (MB[i].GetPosition().GetC() == 'O')
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
+void Bot::Stats()
+{
+	Menu M;
+	M.gotoxy(172, 6); cout << char(218);  //canto superior esquerdo
+	M.gotoxy(172, 18); cout << char(192);  //canto inferior esquerdo
+	M.gotoxy(202, 6); cout << char(191); //canto superior direito
+	M.gotoxy(202, 18); cout << char(217); //canto inferior direito
+
+	for (int i = 1; i <= 29; i++)
+	{
+		M.gotoxy(172 + i, 6); cout << char(196); //linha de cima
+		M.gotoxy(172 + i, 18); cout << char(196); // linha de baixo
+	}
+
+	for (int j = 1; j <= 11; j++)
+	{
+		M.gotoxy(172, 6 + j); cout << char(179); //linha da esquerda
+		M.gotoxy(202, 6 + j); cout << char(179); //linha da direita
+	}
+
+	M.gotoxy(175, 7); cout << "Bot";
+	M.gotoxy(175, 10); cout << "Shot : " << "/3";
+	M.gotoxy(175, 12); cout << "Submarine : " << CountBoats() << "/4";
+	M.gotoxy(175, 14); cout << "Hits: " << "/4";
+	M.gotoxy(175, 16); cout << "Game Turn:" << "/100";
+
+	M.gotoxy(0, 35);
 }

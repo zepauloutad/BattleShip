@@ -1,8 +1,8 @@
 #pragma once
-#include "Board.h" 
-#include "Navalpoint.h"
-#include "Boat.h"
+#include "Bot.h"
+
 using namespace std;
+
 class Player
 {
 private:
@@ -12,16 +12,20 @@ private:
 	Navalpoint shots[100];
 public:
 	Player();
-	~Player();
+	virtual ~Player();
 	Board* GetBoard() { return &T; }
-	string SetName(string _name) { name = _name; }
+	void SetName(string _name) { name = _name; }
 	string GetName() { return name; }
-	Boat* Getboat() { return MB; }
-	Board* getBoard() { return &T; }
+	Boat* GetBoat() { return MB; }
+	Navalpoint* GetShots() { return shots; }
+	int CountBoats();
+	int CountShots(Board* oponent);
 	void Place(Board *T2);
 	void Shoot(Board* Oponent);
 	void Save(std::string file, Board* oponent);
 	void ReadShots(std::string file, Board* oponent);
 	void Read(std::string file, Board* oponent);
 	void WinningCondition(std::string file, Board* oponent);
+	void Stats();
+    
 };

@@ -1,7 +1,5 @@
 #pragma once
 #include "Player.h"
-#include "Board.h"
-#include "Bot.h"
 #include <string>
 using namespace std;
 class Game

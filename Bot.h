@@ -1,7 +1,8 @@
 #pragma once
 #include "Board.h" 
-#include "Navalpoint.h"
 #include "Boat.h"
+#include "Player.h"
+
 using namespace std;
 class Bot
 {
@@ -13,10 +14,16 @@ class Bot
 		Bot();
 		virtual ~Bot();
 		Board* GetBoard() { return &T; }
-		Boat* Getboat() { return MB; }
-		Board* getBoard() { return &T; }
+		Boat* GetBoat() { return MB; }
+		Navalpoint* GetShots() { return shots; }
+		int CountBoats();
+		int CountShots(Board* oponent);
 		void Save(std::string file, Board* oponent);
+		void Read(std::string file, Board* oponent);
 		void Place(Board* T2);
 		void Shoot(Board* Oponent);
 		void WinningCondition(std::string file, Board* oponent);
+		void Stats();
+		
+
 };

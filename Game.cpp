@@ -1,10 +1,10 @@
 #include "Game.h"
-#include "Navalpoint.h"
 #include <iostream>
 #include "Bot.h"
 #include "time.h"
 #include "windows.h"
 using namespace std;
+
 
 Game::Game()
 {
@@ -23,12 +23,10 @@ void Game::NewGame()
 
 void Game::Demo()
 {
-	Player P1;
-	Bot P2;
 	ifstream is;
 	int i = 0;
 	int flipcoin;
-
+	string name;
 	srand(time(0));
 	flipcoin = rand() % 2;
 	//Começa a jogar o jogador
@@ -38,19 +36,24 @@ void Game::Demo()
 		remove("allcords.txt");
 		remove("allcordsbot.txt");
 		remove("shots.txt");
+		cout << ("Player name: ");
+		cin >> name;
+		P.SetName(name);
 		cout << "Coin being flipped..." << endl;
 		Sleep(1000);
 		system("cls");
-		cout << "Starts " <<P1.GetName();
+		cout << "Starts " <<P.GetName();
 		Sleep(1000);
 		system("cls");
-		P1.GetBoard()->Draw2(40, 5, (P2.GetBoard()));
-		P1.Place(P2.GetBoard());
-		P2.Place(P1.GetBoard());
+		P.GetBoard()->Draw2(40, 5, (B.GetBoard()));
+		P.Stats();
+		B.Stats();
+		P.Place(B.GetBoard());
+		B.Place(P.GetBoard());
 		while (1) 
 		{
-			P1.Shoot(P2.GetBoard());
-			P2.Shoot(P1.GetBoard());
+			P.Shoot(B.GetBoard());
+			B.Shoot(P.GetBoard());
 		}
 	}
 	//Começa a jogar o bot
@@ -60,20 +63,24 @@ void Game::Demo()
 		remove("allcords.txt");
 		remove("allcordsbot.txt");
 		remove("shots.txt");
+		cout << ("Player name: ");
+		cin >> name;
+		P.SetName(name);
 		cout << "Coin being flipped..." << endl;
 		Sleep(1000);
 		system("cls");
 		cout << "Starts the bot";
 		Sleep(1000);
 		system("cls");
-		P1.GetBoard()->Draw2(40, 5, (P2.GetBoard()));
-		P2.Place(P1.GetBoard());
-		P1.Place(P2.GetBoard());
+		P.GetBoard()->Draw2(40, 5, (B.GetBoard()));
+		P.Stats();
+		B.Stats();
+		B.Place(P.GetBoard());
+		P.Place(B.GetBoard());
 		while (1)
 		{
-			P2.Shoot(P1.GetBoard());
-			P1.Shoot(P2.GetBoard());
-		
+			B.Shoot(P.GetBoard());
+			P.Shoot(B.GetBoard());
 
 		}
 	}
@@ -81,6 +88,7 @@ void Game::Demo()
 
 void Game::LastGame()
 {
+
 	//Carrega o tabuleiro do Bot com os tiros do jogador
 		ReadBot("shots.txt");
 	//Carrega o tabuleiro do jogador com as posições dos barcos
@@ -126,7 +134,7 @@ void Game::SaveBot(string file)
 	
 	os.open(file);
 	if (!os) {
-		cerr << "ERRO: não é possível abrir o ficheiro " << file << '\n';
+		cerr << "ERROR: problem in opening the file" << file << '\n';
 		exit(0);
 	}
 	B.GetBoard()->Save(os);
@@ -139,7 +147,7 @@ void Game::SavePlayer(string file)
 
 	os.open(file);
 	if (!os) {
-		cerr << "ERRO: não é possível abrir o ficheiro " << file << '\n';
+		cerr << "ERROR: problem in opening the file" << file << '\n';
 		exit(0);
 	}
 	P.GetBoard()->Save(os);
@@ -153,7 +161,7 @@ void Game::ReadBot(string file)
 	is.open(file);
 	if (!is) 
 	{
-		cerr << "ERRO: não é possível abrir o ficheiro " << file << '\n';
+		cerr << "ERROR: problem in opening the file" << file << '\n';
 		exit(0);
 	}
 	B.GetBoard()->Read(is);
@@ -167,7 +175,7 @@ void Game::ReadPlayer(string file)
 	is.open(file);
 	if (!is)
 	{
-		cerr << "ERRO: não é possível abrir o ficheiro " << file << '\n';
+		cerr << "ERROR: problem in opening the file" << file << '\n';
 		exit(0);
 	}
 	P.GetBoard()->Read(is);

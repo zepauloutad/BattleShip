@@ -1,17 +1,20 @@
 #include "player.h"
 #include <iostream>
+#include "Menu.h"
+
 using namespace std;
 Player::Player()
 {
 	name = "Player";
 }
 
-Player::~Player()
+ Player::~Player()
 {
 }
 
 void Player::Place(Board* T2)
 {
+	Bot B;
 	int i = 0;
 	Navalpoint cel, celRight, celLeft, celTop, celTopRight, celTopLeft, celUnder, celUnderRight, celUnderLeft;
 
@@ -38,6 +41,8 @@ void Player::Place(Board* T2)
 			ReadShots("BotPositions.txt",T2);
 			system("cls");
 			GetBoard()->Draw2(40, 5, T2);
+			Stats();
+			B.Stats();
 			MB[i].SetPosition(MB->Boatcreate(i + 1));
 			celTop = GetBoard()->GetCellTop(MB[i].GetPosition());
 			celTopLeft = GetBoard()->GetCellTopLeft(MB[i].GetPosition());
@@ -54,12 +59,15 @@ void Player::Place(Board* T2)
 		GetBoard()->SetCell(MB[i].GetPosition());
 		system("cls");
 		GetBoard()->Draw2(40, 5, T2);
-		Save("PlayerPositions.txt", getBoard());
+		Stats();
+		B.Stats();
+		Save("PlayerPositions.txt", GetBoard());
 	}
 }
 
 void Player::Shoot(Board* oponent)
 {
+	Bot B;
 	int x = 0, i = 0;
 	char y;
 	int status;
@@ -96,10 +104,12 @@ void Player::Shoot(Board* oponent)
 			shots[i].SetY(y);
 			shots[i] = oponent->GetCell(shots[i]);
 			shots[i].GetC();
-			std::system("cls");
+			system("cls");
 			ReadShots("allcords.txt", oponent);
 			Save("shots.txt", oponent);
 			GetBoard()->Draw2(40, 5, (oponent));
+			Stats();
+			B.Stats();
 		}
 		if (shots[i].GetC() == '.')
 		{
@@ -107,8 +117,10 @@ void Player::Shoot(Board* oponent)
 			oponent->SetCell(shots[i]);
 			ReadShots("allcords.txt", oponent);
 			Save("shots.txt", oponent);
-			std::system("cls");
+			system("cls");
 			GetBoard()->Draw2(40, 5, (oponent));
+			Stats();
+			B.Stats();
 		}
 		if (shots[i].GetC() == 'O')
 		{
@@ -117,8 +129,10 @@ void Player::Shoot(Board* oponent)
 			Save("allcords.txt", oponent);
 			ReadShots("allcords.txt", oponent);
 			Save("shots.txt", oponent);
-			std::system("cls");
+			system("cls");
 			GetBoard()->Draw2(40, 5, oponent);
+			Stats();
+			B.Stats();
 			WinningCondition("allcords.txt",oponent);
 		}
 	}
@@ -188,6 +202,60 @@ void Player::WinningCondition(string file, Board* oponent)
 		exit(0);
 	}
 	is.close();
+}
+
+int Player::CountBoats()
+{
+	int count = 0,i = 0;
+	
+	for (i = 0; i < 4; i++) 
+	{
+		if (MB[i].GetPosition().GetC() == 'O')
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
+int Player::CountShots(Board* oponent)
+{
+	int count = 0, size = 0, i = 0;
+	size++;
+	for(i = 0; i < size; i++)
+	{
+	if (GetShots()->GetC() == 'A' || GetShots()->GetC() == 'T');
+		count++;
+	}
+	return count;
+}
+
+void Player::Stats()
+{
+	Menu M;
+	M.gotoxy(5, 6); cout << char(218);  //canto superior esquerdo
+	M.gotoxy(5, 18); cout << char(192);  //canto inferior esquerdo
+	M.gotoxy(35, 6); cout << char(191); //canto superior direito
+	M.gotoxy(35, 18); cout << char(217); //canto inferior direito
+
+	for (int i = 1; i <= 29; i++)
+	{
+		M.gotoxy(5 + i, 6); cout << char(196); //linha de cima
+		M.gotoxy(5 + i, 18); cout << char(196); // linha de baixo
+	}
+
+	for (int j = 1; j <= 11; j++)
+	{
+		M.gotoxy(5, 6 + j); cout << char(179); //linha da esquerda
+		M.gotoxy(35, 6 + j); cout << char(179); //linha da direita
+	}
+	M.gotoxy(8, 7); cout << GetName();
+	M.gotoxy(8, 10); cout << "Shot : " << "/3";
+	M.gotoxy(8, 12); cout << "Submarine : " << CountBoats() << "/4";
+	M.gotoxy(8, 14); cout << "Hits: " << "/4";
+	M.gotoxy(8, 16); cout << "Game Turn:" << "/100";
+
+	M.gotoxy(0, 35);
 }
 
 

@@ -11,8 +11,6 @@ class Boat
 		Navalpoint BoatcreateRandom();
 		void SetPosition(Navalpoint _position) { position = _position; }
 		Navalpoint GetPosition() { return position; }
-		void Save(std::ofstream &os);
-		void Read(std::ifstream &is);
 };
 
 

@@ -1,4 +1,22 @@
 Battleship.
 This game is still a demo under development within the scope of the subject LAB 2nd Semester 2020/2021.
+How does it work?.
+When the game starts,the program will choose who will be the first to play, the player or the bot.
+Then the player needs to place all of his boats on his board,in this demo you can use up to 4 boats.
+When all the boats from the player and the bot are place down, you can start your move.
+Each player has 3 shoots per turn from a total of 100 shots, you need to guess the positions of the enemy boats in their board.
+The one who first destroys all of the enemy boats wins.
+
+Important info:
+
+O = a boat.
+A = a missed shot.
+T = a destroyed boat.
+
+Rules:
+                                                                                        
+You can t place down a boat on the same location or in the cells around it.   
+                                                                                        																					
 Made by Jose Rocha and Leonardo Botelho.
+
 Have fun! 

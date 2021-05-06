@@ -35,7 +35,7 @@ bool Navalpoint::SetX(int m_x)
 	bool status = false;
 	while (m_x > 10 || m_x < 0)
 	{
-		cout << "Indique um numero de 1 a 10 " <<endl;
+		cout << "Write a number from 1 to 10 " <<endl;
 		cin >> m_x;
 	}
 	if (m_x >= 1 && m_x <= 10) 
@@ -53,7 +53,7 @@ bool Navalpoint::SetY(char m_y)
 	
 	while (m_y >'J')
 	{
-		cout << "Indique um caracter de A a J" <<endl;
+		cout << "Write a caracter from A to J" <<endl;
 		cin >> m_y;
 		m_y = toupper(m_y);
 	}
