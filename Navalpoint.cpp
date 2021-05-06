@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+//#include "stdafx.h".
 #include "Navalpoint.h"
 #include <iostream>
 
